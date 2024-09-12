@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
-    <link rel="stylesheet" href="style2.css"> <!-- Same CSS file as index page -->
+    <link rel="stylesheet" href="style2.css"> <!-- Ensure this CSS doesn't hide content -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 </head>
 <body>
 
-<!-- Navbar section copied from index.php -->
+<!-- Navbar section -->
 <div class="container">
     <div class="navbar-top">
         <div class="social-link">
@@ -21,9 +21,9 @@
             <h3>FURNITURE</h3>
         </div>
         <div class="icons">
-            <i><img src="./image/search.png" alt="" width="20px"></i>
-            <i><img src="./image/heart.png" alt="" width="20px"></i>
+            <!-- Cart icon with cart count -->
             <i><img src="./image/shopping-cart.png" alt="" width="25px"></i>
+            <span id="cart-count" class="badge badge-primary">0</span> <!-- Cart count -->
         </div>
     </div>
 </div>
@@ -40,7 +40,7 @@
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Shop</a>
+                    <a class="nav-link" href="shop.php">Shop</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Top Chair</a>
@@ -76,9 +76,7 @@
         $subject = htmlspecialchars($_POST['subject']);
         $message = htmlspecialchars($_POST['message']);
 
-        // You can add validation and form handling logic here
         // For now, we just display a success message
-
         $successMessage = "Your record has been saved successfully, $name!";
     }
     ?>
@@ -90,6 +88,7 @@
         </div>
     <?php endif; ?>
 
+    <!-- Contact Form -->
     <form action="contact.php" method="POST">
         <div class="form-group">
             <label for="name">Your Name:</label>
@@ -111,7 +110,7 @@
     </form>
 </div>
 
-<!-- Footer copied from index.php -->
+<!-- Footer -->
 <footer id="footer">
     <h1 class="text-center">Furniture</h1>
     <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, ab?</p>
@@ -129,6 +128,13 @@
         Designed By <a href="#">SA Coding</a>
     </div>
 </footer>
+
+<!-- JavaScript to retrieve cart count from localStorage -->
+<script>
+    // Load cart count from localStorage on page load
+    let cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
+    document.getElementById('cart-count').textContent = cartCount; // Update cart count display
+</script>
 
 </body>
 </html>
